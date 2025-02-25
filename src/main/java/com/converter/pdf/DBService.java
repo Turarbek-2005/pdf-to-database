@@ -1,6 +1,5 @@
 package com.converter.pdf;
 
-
 import com.converter.pdf.PdfParser.StudentRecord;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -15,4 +14,3 @@ public class DBService {
         }
     }
 }
-

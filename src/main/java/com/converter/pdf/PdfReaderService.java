@@ -15,7 +15,7 @@ public class PdfReaderService {
         try (PDDocument document = PDDocument.load(new File(pdfFilePath))) {
             PDFTextStripper pdfStripper = new PDFTextStripper();
             String text = pdfStripper.getText(document);
-            // Разбиваем текст по строкам
+
             String[] splitLines = text.split("\\r?\\n");
             for (String line : splitLines) {
                 lines.add(line.trim());
@@ -24,4 +24,3 @@ public class PdfReaderService {
         return lines;
     }
 }
-

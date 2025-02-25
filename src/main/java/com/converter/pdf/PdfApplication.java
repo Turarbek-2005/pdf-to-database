@@ -25,7 +25,7 @@ public class PdfApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		jdbcTemplate.update("DELETE FROM students");
 
-		String pdfFilePath = "C:/Users/alibe/OneDrive/Рабочий стол/grants.pdf";
+		String pdfFilePath = "C:/Users/andas/OneDrive/Desktop/grants.pdf";
 		List<String> lines = PdfReaderService.readPdfLines(pdfFilePath);
 
 		List<StudentRecord> records = PdfParser.parsePdfLines(lines);

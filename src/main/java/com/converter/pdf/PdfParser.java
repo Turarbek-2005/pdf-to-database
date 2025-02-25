@@ -5,14 +5,12 @@ import java.util.List;
 
 public class PdfParser {
 
-    // Вложенный класс-модель для хранения данных студента
     public static class StudentRecord {
         private String faculty;
         private String fio;
         private String code;
         private int sumPoints;
 
-        // Геттеры и сеттеры
         public String getFaculty() {
             return faculty;
         }
@@ -51,25 +49,21 @@ public class PdfParser {
         String currentFaculty = null;
 
         for (String line : lines) {
-            // Если строка начинается с префикса факультета, обновляем текущий факультет
             if (line.startsWith("В0") || line.startsWith("B")) {
                 currentFaculty = line;
                 continue;
             }
 
-            // Пропускаем заголовки или пустые строки
             if (line.isEmpty() || line.startsWith("№") || line.contains("Сумма")) {
                 continue;
             }
 
-            // Предполагаем, что строка содержит: код, ФИО, сумма баллов и ещё один код
-            // (например, факультет)
             String[] parts = line.split("\\s+");
             if (parts.length < 4) {
                 continue;
             }
 
-            String code = parts[0];
+            String code = parts[parts.length - 1];
             int sumPoints;
             try {
                 sumPoints = Integer.parseInt(parts[parts.length - 2]);
@@ -77,7 +71,6 @@ public class PdfParser {
                 continue;
             }
 
-            // ФИО составляется из частей между первым и предпоследним элементом
             StringBuilder fioBuilder = new StringBuilder();
             for (int i = 1; i < parts.length - 2; i++) {
                 fioBuilder.append(parts[i]).append(" ");
